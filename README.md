@@ -43,8 +43,8 @@ cp .env.example .env
 
 ### 4. Edite o .env com as informações do banco de dados:
 
-DB_DATABASE=sistema_vendas <br>
-DB_USERNAME=seu_usuario
+DB_DATABASE=simple_erp <br>
+DB_USERNAME=seu_usuario <br>
 DB_PASSWORD=sua_senha
 
 ### 5. Gerar chave da aplicação
