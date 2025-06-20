@@ -43,7 +43,7 @@ cp .env.example .env
 
 ### 4. Edite o .env com as informações do banco de dados:
 
-DB_DATABASE=sistema_vendas
+DB_DATABASE=sistema_vendas <br>
 DB_USERNAME=seu_usuario
 DB_PASSWORD=sua_senha
 
