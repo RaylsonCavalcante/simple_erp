@@ -1,11 +1,13 @@
-# 🛒 Sistema de Vendas - Laravel 12
+# 🛒 Sistema de Vendas
 
 Este projeto é um sistema de vendas desenvolvido em **Laravel 12**, com funcionalidades como:
 
+- Cadastro e edição de produtos
+- Cadastro e edição de clientes
 - Cadastro e edição de vendas
 - Adição de itens
 - Geração de parcelas e vencimentos
-- Emissão de PDF da venda
+- Emissão de PDF
 
 ---
 
