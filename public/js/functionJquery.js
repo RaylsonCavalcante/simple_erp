@@ -251,6 +251,7 @@ $('#gerarParcelas').click(() => {
 
 // EDITAR PARCELA
 $(document).on('change', '.vencimento-input, .valor-input', function () {
+    const parcelas = JSON.parse(localStorage.getItem('parcels')) || [];
     const $row = $(this).closest('tr');
     const index = $row.data('index');
     if (index !== 0) return;
@@ -260,12 +261,17 @@ $(document).on('change', '.vencimento-input, .valor-input', function () {
     const total = calcularTotalItens();
 
     if (!novaData || isNaN(novoValor)) return alert('Data ou valor inválido.');
-    if (novoValor >= total){ 
+
+    if (parcelas.length > 1 && novoValor >= total){ 
         mostraParcelas();
         return alert('Valor da primeira parcela não pode ser maior ou igual que o total.');
     }
 
-    const parcelas = JSON.parse(localStorage.getItem('parcels')) || [];
+    if (parcelas.length === 1 && novoValor !== total){ 
+        mostraParcelas();
+        return alert('Valor da parcela não pode ser maior ou menor que o total.');
+    }
+
     const restantesQtd = parcelas.length - 1;
     const restante = total - novoValor;
     const valorRestante = restantesQtd > 0 ? parseFloat((restante / restantesQtd).toFixed(2)) : 0;
@@ -382,14 +388,14 @@ function calcularTotalItens() {
 
 //APENAS PARA CRIAR DATA SEM PROBLEMA DE FUSO
 function fusoDate(date) {
-    const [ano, mes, dia] = date.split('-').map(Number);
+    const [ano, mes, dia] = date.split('-').map(Number); // ["2025", "06", "23"]
     return new Date(ano, mes - 1, dia);
 }
 
 // FORMATA DATA PARA YYYY-MM-DD
 function formataDate(date) {
-    const dia = String(date.getDate()).padStart(2, '0');
-    const mes = String(date.getMonth() + 1).padStart(2, '0');
+    const dia = String(date.getDate()).padStart(2, '0'); // 03
+    const mes = String(date.getMonth() + 1).padStart(2, '0'); // 06
     const ano = date.getFullYear();
-    return `${ano}-${mes}-${dia}`;
+    return `${ano}-${mes}-${dia}`; // "2025-06-23"
 }
